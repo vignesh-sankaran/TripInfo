@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F658DDC21C3D4BF00906A86 /* StationTableViewCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F658DDB21C3D4BF00906A86 /* StationTableViewCellViewController.swift */; };
 		2FBD67E721A5204900C209DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD67E621A5204900C209DC /* AppDelegate.swift */; };
 		2FBD67E921A5204900C209DC /* SelectStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBD67E821A5204900C209DC /* SelectStationViewController.swift */; };
 		2FBD67EC21A5204900C209DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FBD67EA21A5204900C209DC /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0AFB803D5D52E982C97F1A6E /* Pods-TripInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripInfo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripInfo/Pods-TripInfo.debug.xcconfig"; sourceTree = "<group>"; };
+		2F658DDB21C3D4BF00906A86 /* StationTableViewCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCellViewController.swift; sourceTree = "<group>"; };
 		2FBD67E321A5204900C209DC /* TripInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FBD67E621A5204900C209DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FBD67E821A5204900C209DC /* SelectStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F658DDD21C3D4CB00906A86 /* SelectStatkonView */ = {
+			isa = PBXGroup;
+			children = (
+				2FBD67E821A5204900C209DC /* SelectStationViewController.swift */,
+				2F658DDB21C3D4BF00906A86 /* StationTableViewCellViewController.swift */,
+			);
+			path = SelectStatkonView;
+			sourceTree = "<group>";
+		};
 		2FBD67DA21A5204900C209DC = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +100,8 @@
 		2FBD67E521A5204900C209DC /* TripInfo */ = {
 			isa = PBXGroup;
 			children = (
+				2F658DDD21C3D4CB00906A86 /* SelectStatkonView */,
 				2FBD67E621A5204900C209DC /* AppDelegate.swift */,
-				2FBD67E821A5204900C209DC /* SelectStationViewController.swift */,
 				2FBD67EA21A5204900C209DC /* Main.storyboard */,
 				2FBD67ED21A5204B00C209DC /* Assets.xcassets */,
 				2FBD67EF21A5204B00C209DC /* LaunchScreen.storyboard */,
@@ -309,6 +320,7 @@
 			files = (
 				2FBD67E921A5204900C209DC /* SelectStationViewController.swift in Sources */,
 				2FBD67E721A5204900C209DC /* AppDelegate.swift in Sources */,
+				2F658DDC21C3D4BF00906A86 /* StationTableViewCellViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
