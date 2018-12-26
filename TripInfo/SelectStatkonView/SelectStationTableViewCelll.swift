@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StationTableViewCellViewController: UITableViewCell {
+class SelectStationTableViewCell: UITableViewCell {
     @IBOutlet weak var stationNameLabel: UILabel!
     @IBOutlet weak var stationLineLabel: UILabel!
 }

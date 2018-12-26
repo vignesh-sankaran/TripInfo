@@ -22,7 +22,14 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Search for \(searchBar.text!)")
+        // Hide the keyboard
+        searchBar.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: false)
+
+        if let searchText = searchBar.text {
+            // Hit the network service
+            print("Search for \(searchText)")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +37,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "Cell") as! UITableViewCell
+        guard let tableCell = tableView.dequeueReusableCell(withIdentifier: "StationCell") as? SelectStationTableViewCell else { fatalError("SelectStationCell not found in Storyboard!") }
+        return tableCell
     }
 }
