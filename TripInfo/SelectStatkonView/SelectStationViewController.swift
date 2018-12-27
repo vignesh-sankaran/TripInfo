@@ -29,6 +29,9 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         if let searchText = searchBar.text {
             // Hit the network service
             print("Search for \(searchText)")
+            PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (URLString: String) -> () in
+                print("URL: \(URLString)")
+            })
         }
     }
     
