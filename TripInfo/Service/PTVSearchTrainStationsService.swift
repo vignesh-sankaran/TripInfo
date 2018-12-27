@@ -12,7 +12,21 @@ import Alamofire
 import CryptoSwift
 
 class PTVSearchTrainStationsService {
-    init () {}
+    private let developerID: String
+    private let APIKey: String
+    
+    init () {
+        guard let plistPath = Bundle.main.path(forResource: "PTVAPIService", ofType: "plist") else {
+            fatalError("Unable to find PTVAPIService.plist!")
+        }
+        
+        guard let params = NSDictionary(contentsOfFile: plistPath) else {
+            fatalError("Error converting PTVAPIService.plist into NSDictionary!")
+        }
+        
+        developerID = params["DeveloperID"] as! String
+        APIKey = params["SecurityKey"] as! String
+    }
     
     func searchStations(stationName: String, callback: @escaping(_ response: String) -> ()) {
         // TODO: Move all URL construction logic to a separate function
@@ -25,18 +39,7 @@ class PTVSearchTrainStationsService {
         let queryItemRouteTypes = URLQueryItem(name: "route_types", value: "[0]")
         let queryItemIncludeOutlets = URLQueryItem(name: "include_outlets", value: "false")
         
-        // Get DevId from PTVAPIService plist
-        // TODO: Move this to init()
-        guard let plistPath = Bundle.main.path(forResource: "PTVAPIService", ofType: "plist") else {
-            fatalError("Unable to find PTVAPIService.plist!")
-        }
-        
-        guard let params = NSDictionary(contentsOfFile: plistPath) else {
-            fatalError("Error converting PTVAPIService.plist into NSDictionary!")
-        }
-        
-        let devId = params["DevId"] as! String
-        let queryItemDevId = URLQueryItem(name: "devid", value: devId)
+        let queryItemDevId = URLQueryItem(name: "devid", value: developerID)
         
         queryURLComponents.queryItems = [queryItemRouteTypes, queryItemIncludeOutlets, queryItemDevId]
         
@@ -54,11 +57,13 @@ class PTVSearchTrainStationsService {
     }
     
     func calculateHMAC(baseURL: String) -> String {
+        // TODO: Switch this out for CommonCrypto.h
         let hmacBytes: [UInt8]
+        let keyBytes = APIKey.bytes
         let urlBytes = baseURL.bytes
         
         do {
-            hmacBytes = try HMAC(key: baseURL, variant: .sha1).authenticate(urlBytes)
+            hmacBytes = try HMAC(key: keyBytes, variant: .sha1).authenticate(urlBytes)
         } catch {
             fatalError("Failed to generate HMAC signature for url: \(baseURL)")
         }
