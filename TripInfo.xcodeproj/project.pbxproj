@@ -36,6 +36,7 @@
 		0AFB803D5D52E982C97F1A6E /* Pods-TripInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripInfo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripInfo/Pods-TripInfo.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationCellViewModel.swift; sourceTree = "<group>"; };
 		2F658DDB21C3D4BF00906A86 /* SelectStationTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationTableViewCelll.swift; sourceTree = "<group>"; };
+		2F8093FE21DCCCD200AD3ECD /* TripInfo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TripInfo-Bridging-Header.h"; sourceTree = "<group>"; };
 		2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTVSearchTrainStationsService.swift; sourceTree = "<group>"; };
 		2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationViewModel.swift; sourceTree = "<group>"; };
 		2FBD67E321A5204900C209DC /* TripInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */,
+				2F8093FE21DCCCD200AD3ECD /* TripInfo-Bridging-Header.h */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -213,6 +215,7 @@
 				TargetAttributes = {
 					2FBD67E221A5204900C209DC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					2FBD67F621A5204B00C209DC = {
 						CreatedOnToolsVersion = 10.1;
@@ -509,6 +512,7 @@
 			baseConfigurationReference = 0AFB803D5D52E982C97F1A6E /* Pods-TripInfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TripInfo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -517,6 +521,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripinfo.TripInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TripInfo/Service/TripInfo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -527,6 +533,7 @@
 			baseConfigurationReference = BFC7E4B925491FE074C65FC8 /* Pods-TripInfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TripInfo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,6 +542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripinfo.TripInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TripInfo/Service/TripInfo-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

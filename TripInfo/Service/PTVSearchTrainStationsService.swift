@@ -30,7 +30,7 @@ class PTVSearchTrainStationsService {
     
     func searchStations(stationName: String, callback: @escaping(_ response: String) -> ()) {
         // TODO: Move all URL construction logic to a separate function
-        // Set up URL
+
         var queryURLComponents = URLComponents()
         queryURLComponents.scheme = "http"
         queryURLComponents.host = "timetableapi.ptv.vic.gov.au"
@@ -57,17 +57,21 @@ class PTVSearchTrainStationsService {
     }
     
     func calculateHMAC(baseURL: String) -> String {
-        // TODO: Switch this out for CommonCrypto.h
-        let hmacBytes: [UInt8]
-        let keyBytes = APIKey.bytes
-        let urlBytes = baseURL.bytes
+        let encodedKey = APIKey.cString(using: String.Encoding.utf8)!
+        let encodedData = baseURL.cString(using: String.Encoding.utf8)!
         
-        do {
-            hmacBytes = try HMAC(key: keyBytes, variant: .sha1).authenticate(urlBytes)
-        } catch {
-            fatalError("Failed to generate HMAC signature for url: \(baseURL)")
+        let algorithm = CCHmacAlgorithm(kCCHmacAlgSHA1)
+        var rawHash = Array(repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+        
+        CCHmac(algorithm, encodedKey, encodedKey.count - 1, encodedData, encodedData.count - 1, &rawHash)
+        
+        // Convert byte array to hex string
+        let hashString = NSMutableString()
+        
+        for byte in rawHash {
+            hashString.appendFormat("%02hhx", byte)
         }
         
-        return hmacBytes.toHexString()
+        return hashString as String
     }
 }
