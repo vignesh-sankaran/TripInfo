@@ -29,8 +29,12 @@ class PTVSearchTrainStationsService {
     }
     
     func searchStations(stationName: String, callback: @escaping(_ response: String) -> ()) {
-        // TODO: Move all URL construction logic to a separate function
-
+        let URLString = constructURL(stationName: stationName)
+        
+        callback(URLString)
+    }
+    
+    func constructURL(stationName: String) -> String {
         var queryURLComponents = URLComponents()
         queryURLComponents.scheme = "http"
         queryURLComponents.host = "timetableapi.ptv.vic.gov.au"
@@ -56,9 +60,7 @@ class PTVSearchTrainStationsService {
         // TODO: Figure out another way to append queryItemSignature without having to redeclare the array
         queryURLComponents.queryItems!.append(queryItemSignature)
         
-        let URLString = queryURLComponents.string!
-        
-        callback(URLString)
+        return queryURLComponents.string!
     }
     
     func calculateHMAC(URLSegment: String) -> String {
