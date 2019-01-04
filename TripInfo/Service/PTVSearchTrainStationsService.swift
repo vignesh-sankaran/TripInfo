@@ -43,7 +43,12 @@ class PTVSearchTrainStationsService {
         
         queryURLComponents.queryItems = [queryItemRouteTypes, queryItemIncludeOutlets, queryItemDevId]
         
-        let endpoint = queryURLComponents.path + queryURLComponents.query!
+        // There is an unusual quirk in that a URLComponent query string does not return a
+        // string that is properly percent encoded as per RFC 3986
+        let queryString = queryURLComponents.query!
+        let encodedQueryString = queryString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        let endpoint = queryURLComponents.path + encodedQueryString
+        
         let signature = calculateHMAC(URLSegment: endpoint)
         
         let queryItemSignature = URLQueryItem(name: "signature", value: signature)
