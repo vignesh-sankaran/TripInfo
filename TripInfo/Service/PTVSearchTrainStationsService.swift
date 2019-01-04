@@ -47,7 +47,7 @@ class PTVSearchTrainStationsService {
         // string that is properly percent encoded as per RFC 3986
         let queryString = queryURLComponents.query!
         let encodedQueryString = queryString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
-        let endpoint = queryURLComponents.path + encodedQueryString
+        let endpoint = queryURLComponents.path + "?" + encodedQueryString
         
         let signature = calculateHMAC(URLSegment: endpoint)
         
