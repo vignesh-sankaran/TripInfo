@@ -43,8 +43,8 @@ class PTVSearchTrainStationsService {
         
         queryURLComponents.queryItems = [queryItemRouteTypes, queryItemIncludeOutlets, queryItemDevId]
         
-        let baseURLString = queryURLComponents.string!
-        let signature = calculateHMAC(baseURL: baseURLString)
+        let endpoint = queryURLComponents.path + queryURLComponents.query!
+        let signature = calculateHMAC(URLSegment: endpoint)
         
         let queryItemSignature = URLQueryItem(name: "signature", value: signature)
         
@@ -56,22 +56,17 @@ class PTVSearchTrainStationsService {
         callback(URLString)
     }
     
-    func calculateHMAC(baseURL: String) -> String {
-        let encodedKey = APIKey.cString(using: String.Encoding.utf8)!
-        let encodedData = baseURL.cString(using: String.Encoding.utf8)!
+    func calculateHMAC(URLSegment: String) -> String {
+        let hmacBytes: [UInt8]
+        let segmentBytes = URLSegment.bytes
+        let APIKeyBytes = APIKey.bytes
         
-        let algorithm = CCHmacAlgorithm(kCCHmacAlgSHA1)
-        var rawHash = Array(repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-        
-        CCHmac(algorithm, encodedKey, encodedKey.count - 1, encodedData, encodedData.count - 1, &rawHash)
-        
-        // Convert byte array to hex string
-        let hashString = NSMutableString()
-        
-        for byte in rawHash {
-            hashString.appendFormat("%02hhx", byte)
+        do {
+            hmacBytes = try HMAC(key: APIKeyBytes, variant: .sha1).authenticate(segmentBytes)
+        } catch {
+            fatalError("Failed to generate HMAC signature for url: \(URLSegment)")
         }
         
-        return hashString as String
+        return hmacBytes.toHexString()
     }
 }
