@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchStationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
@@ -29,8 +30,8 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         if let searchText = searchBar.text {
             // Hit the network service
             print("Search for \(searchText)")
-            PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (URLString: String) -> () in
-                print("URL: \(URLString)")
+            PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (response: DataResponse<Any>) -> () in
+                print("Status Code: \(response.response!.statusCode)")
             })
         }
     }

@@ -28,10 +28,13 @@ class PTVSearchTrainStationsService {
         APIKey = params["SecurityKey"] as! String
     }
     
-    func searchStations(stationName: String, callback: @escaping(_ response: String) -> ()) {
+    func searchStations(stationName: String, callback: @escaping(_ response: DataResponse<Any>) -> ()) {
         let URLString = constructURL(stationName: stationName)
         
-        callback(URLString)
+        // Make call to API, send response back as callback
+        Alamofire.request(URLString).responseJSON { response in
+            callback(response)
+        }
     }
     
     func constructURL(stationName: String) -> String {
