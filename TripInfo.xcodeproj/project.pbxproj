@@ -36,7 +36,6 @@
 		0AFB803D5D52E982C97F1A6E /* Pods-TripInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripInfo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripInfo/Pods-TripInfo.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationCellViewModel.swift; sourceTree = "<group>"; };
 		2F658DDB21C3D4BF00906A86 /* SelectStationTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationTableViewCelll.swift; sourceTree = "<group>"; };
-		2F8093FE21DCCCD200AD3ECD /* TripInfo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TripInfo-Bridging-Header.h"; sourceTree = "<group>"; };
 		2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTVSearchTrainStationsService.swift; sourceTree = "<group>"; };
 		2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationViewModel.swift; sourceTree = "<group>"; };
 		2FBD67E321A5204900C209DC /* TripInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +76,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F658DDD21C3D4CB00906A86 /* SelectStatkonView */ = {
+		2F658DDD21C3D4CB00906A86 /* SelectStationView */ = {
 			isa = PBXGroup;
 			children = (
 				2FBD67E821A5204900C209DC /* SelectStationViewController.swift */,
@@ -85,16 +84,15 @@
 				2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */,
 				2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */,
 			);
-			path = SelectStatkonView;
+			path = SelectStationView;
 			sourceTree = "<group>";
 		};
-		2FB1B93521CDC83D001E65F8 /* Service */ = {
+		2FB1B93521CDC83D001E65F8 /* PTVService */ = {
 			isa = PBXGroup;
 			children = (
 				2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */,
-				2F8093FE21DCCCD200AD3ECD /* TripInfo-Bridging-Header.h */,
 			);
-			path = Service;
+			path = PTVService;
 			sourceTree = "<group>";
 		};
 		2FBD67DA21A5204900C209DC = {
@@ -120,14 +118,14 @@
 		2FBD67E521A5204900C209DC /* TripInfo */ = {
 			isa = PBXGroup;
 			children = (
-				2FB1B93521CDC83D001E65F8 /* Service */,
-				2F658DDD21C3D4CB00906A86 /* SelectStatkonView */,
 				2FBD67E621A5204900C209DC /* AppDelegate.swift */,
-				2FBD67EA21A5204900C209DC /* Main.storyboard */,
 				2FBD67ED21A5204B00C209DC /* Assets.xcassets */,
-				2FBD67EF21A5204B00C209DC /* LaunchScreen.storyboard */,
 				2FBD67F221A5204B00C209DC /* Info.plist */,
+				2FBD67EF21A5204B00C209DC /* LaunchScreen.storyboard */,
+				2FBD67EA21A5204900C209DC /* Main.storyboard */,
 				2FF23A3721D3731100704616 /* PTVAPIService.plist */,
+				2F658DDD21C3D4CB00906A86 /* SelectStationView */,
+				2FB1B93521CDC83D001E65F8 /* PTVService */,
 			);
 			path = TripInfo;
 			sourceTree = "<group>";
@@ -521,7 +519,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripinfo.TripInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TripInfo/Service/TripInfo-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -542,7 +541,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tripinfo.TripInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "TripInfo/Service/TripInfo-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
