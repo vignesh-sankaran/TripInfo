@@ -22,15 +22,37 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         searchResultTableView.delegate = self
     }
     
+    func displayLoadingAlert() -> UIAlertController {
+        //create an alert controller
+        let pending = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
+        
+        //create an activity indicator
+        let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
+        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        //add the activity indicator as a subview of the alert controller's view
+        pending.view.addSubview(indicator)
+        indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
+        indicator.startAnimating()
+        
+        self.present(pending, animated: true, completion: nil)
+        
+        return pending
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Hide the keyboard
         searchBar.endEditing(true)
         searchBar.setShowsCancelButton(false, animated: false)
 
         if let searchText = searchBar.text {
+            // Start spinner inside of UIAlertController
+            let loadingAlert = displayLoadingAlert()
+            
             // Hit the network service
             print("Search for \(searchText)")
             PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (response: DataResponse<Any>) -> () in
+                loadingAlert.removeFromParent()
                 print("Status Code: \(response.response!.statusCode)")
             })
         }
