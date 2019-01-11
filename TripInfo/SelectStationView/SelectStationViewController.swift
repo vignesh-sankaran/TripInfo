@@ -52,7 +52,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
             // Hit the network service
             print("Search for \(searchText)")
             PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (response: DataResponse<Any>) -> () in
-                loadingAlert.removeFromParent()
+                loadingAlert.dismiss(animated: false, completion: nil)
                 print("Status Code: \(response.response!.statusCode)")
             })
         }
