@@ -22,6 +22,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         searchResultTableView.delegate = self
     }
     
+    // Credit to ylin0x81 and petesalt. Retrieved 11 Jan 2019 from https://stackoverflow.com/a/27034447/5891072
     func displayLoadingAlert() -> UIAlertController {
         //create an alert controller
         let pending = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
