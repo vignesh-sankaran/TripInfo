@@ -24,20 +24,15 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     
     // Credit to ylin0x81 and petesalt. Retrieved 11 Jan 2019 from https://stackoverflow.com/a/27034447/5891072
     func displayLoadingAlert() -> UIAlertController {
-        //create an alert controller
         let pending = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
         
-        //create an activity indicator
         let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
         indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        //add the activity indicator as a subview of the alert controller's view
         pending.view.addSubview(indicator)
-        indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
+        indicator.isUserInteractionEnabled = false
         indicator.startAnimating()
-        
-        self.present(pending, animated: true, completion: nil)
-        
+ 
         return pending
     }
     
@@ -49,6 +44,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         if let searchText = searchBar.text {
             // Start spinner inside of UIAlertController
             let loadingAlert = displayLoadingAlert()
+            self.present(loadingAlert, animated: true, completion: nil)
             
             // Hit the network service
             print("Search for \(searchText)")
