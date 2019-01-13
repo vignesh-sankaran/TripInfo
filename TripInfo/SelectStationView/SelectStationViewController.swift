@@ -14,6 +14,8 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultTableView: UITableView!
     
+    var viewModel = SelectStationViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,10 +50,11 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
             
             // Hit the network service
             print("Search for \(searchText)")
-            PTVSearchTrainStationsService().searchStations(stationName: searchText, callback: { (response: DataResponse<Any>) -> () in
-                loadingAlert.dismiss(animated: false, completion: nil)
-                print("Status Code: \(response.response!.statusCode)")
-            })
+            
+            viewModel.populate(stationName: searchText)
+            
+            // Add observer
+            
         }
     }
     
