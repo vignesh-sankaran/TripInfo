@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F0AF32221D0A7890025C7DB /* SelectStationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */; };
+		2F3D62C221F9AB5A00F273C2 /* LoadingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3D62C121F9AB5A00F273C2 /* LoadingAlert.swift */; };
 		2F658DDC21C3D4BF00906A86 /* SelectStationTableViewCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F658DDB21C3D4BF00906A86 /* SelectStationTableViewCelll.swift */; };
 		2FB1B93721CDD076001E65F8 /* PTVSearchTrainStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */; };
 		2FB1B93921CF9D80001E65F8 /* SelectStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		0AFB803D5D52E982C97F1A6E /* Pods-TripInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripInfo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripInfo/Pods-TripInfo.debug.xcconfig"; sourceTree = "<group>"; };
 		2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationCellViewModel.swift; sourceTree = "<group>"; };
+		2F3D62C121F9AB5A00F273C2 /* LoadingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAlert.swift; sourceTree = "<group>"; };
 		2F658DDB21C3D4BF00906A86 /* SelectStationTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationTableViewCelll.swift; sourceTree = "<group>"; };
 		2FB1B93621CDD076001E65F8 /* PTVSearchTrainStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTVSearchTrainStationsService.swift; sourceTree = "<group>"; };
 		2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationViewModel.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				2F658DDB21C3D4BF00906A86 /* SelectStationTableViewCelll.swift */,
 				2FB1B93821CF9D80001E65F8 /* SelectStationViewModel.swift */,
 				2F0AF32121D0A7890025C7DB /* SelectStationCellViewModel.swift */,
+				2F3D62C121F9AB5A00F273C2 /* LoadingAlert.swift */,
 			);
 			path = SelectStationView;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				2FBD67E921A5204900C209DC /* SelectStationViewController.swift in Sources */,
 				2F0AF32221D0A7890025C7DB /* SelectStationCellViewModel.swift in Sources */,
 				2FBD67E721A5204900C209DC /* AppDelegate.swift in Sources */,
+				2F3D62C221F9AB5A00F273C2 /* LoadingAlert.swift in Sources */,
 				2FB1B93921CF9D80001E65F8 /* SelectStationViewModel.swift in Sources */,
 				2F658DDC21C3D4BF00906A86 /* SelectStationTableViewCelll.swift in Sources */,
 			);

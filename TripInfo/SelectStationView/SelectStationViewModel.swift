@@ -9,8 +9,20 @@
 import Foundation
 import Alamofire
 
+extension Notification.Name {
+    static let stationListPopulated = Notification.Name("stationListPopulated")
+}
+
 class SelectStationViewModel {
     private var stations: [SelectStationCellViewModel]
+    
+    var count: Int {
+        return stations.count
+    }
+    
+    var stationList: [SelectStationCellViewModel] {
+        return stations
+    }
     
     init() {
         stations = []
@@ -24,7 +36,7 @@ class SelectStationViewModel {
     }
     
     private func completePopulate(response: DataResponse<Any>) {
-        // Parse JS, put into structs
+        // Parse JSON, put into structs
         // TODO: Remove force unwraps
         let response = response.result.value!
         let responseDict = response as! NSDictionary
@@ -33,14 +45,15 @@ class SelectStationViewModel {
         
         for stop in stops {
             let stopDict = stop as! NSDictionary
-            let stopId = stopDict.object(forKey: "stop_id") as! String
+            let stopIdInt = stopDict.object(forKey: "stop_id") as! Int
             let stopName = stopDict.object(forKey: "stop_name") as! String
+            
+            let stopId = String(stopIdInt)
             
             let stationViewModel = SelectStationCellViewModel(stationName: stopName, stopId: stopId)
             stations.append(stationViewModel)
         }
         
-        // Notification post for VM successfully populating
-        
+        NotificationCenter.default.post(name: .stationListPopulated, object: nil)
     }
 }

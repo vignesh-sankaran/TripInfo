@@ -14,7 +14,18 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultTableView: UITableView!
     
+    var loadingAlert: UIAlertController
     var viewModel = SelectStationViewModel()
+    
+    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        loadingAlert = LoadingAlert.create()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        loadingAlert = LoadingAlert.create()
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,20 +35,6 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         searchResultTableView.delegate = self
     }
     
-    // Credit to ylin0x81 and petesalt. Retrieved 11 Jan 2019 from https://stackoverflow.com/a/27034447/5891072
-    func displayLoadingAlert() -> UIAlertController {
-        let pending = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
-        
-        let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
-        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        pending.view.addSubview(indicator)
-        indicator.isUserInteractionEnabled = false
-        indicator.startAnimating()
- 
-        return pending
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Hide the keyboard
         searchBar.endEditing(true)
@@ -45,7 +42,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
 
         if let searchText = searchBar.text {
             // Start spinner inside of UIAlertController
-            let loadingAlert = displayLoadingAlert()
+            
             self.present(loadingAlert, animated: true, completion: nil)
             
             // Hit the network service
@@ -53,13 +50,22 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
             
             viewModel.populate(stationName: searchText)
             
-            // Add observer
-            
+            // TODO: Figure out how to pass the UIAlertController into stationListLoaded()
+            // Figure out how to pass a second variable 
+            NotificationCenter.default.addObserver(self, selector: #selector(stationListLoaded(with:)), name: .stationListPopulated, object: nil)
+        }
+    }
+    
+    @objc
+    func stationListLoaded(with notification: NSNotification) {
+        DispatchQueue.main.async {
+            print("ViewModel has successfully loaded!")
+            self.loadingAlert.dismiss(animated: false, completion: nil)
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
