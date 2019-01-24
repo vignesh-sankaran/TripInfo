@@ -33,6 +33,8 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         searchBar.delegate = self
         searchResultTableView.dataSource = self
         searchResultTableView.delegate = self
+        
+        self.searchResultTableView.register(SelectStationTableViewCell.self, forCellReuseIdentifier: "StationCell")
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -51,7 +53,6 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
             viewModel.populate(stationName: searchText)
             
             // TODO: Figure out how to pass the UIAlertController into stationListLoaded()
-            // Figure out how to pass a second variable 
             NotificationCenter.default.addObserver(self, selector: #selector(stationListLoaded(with:)), name: .stationListPopulated, object: nil)
         }
     }
@@ -61,6 +62,8 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         DispatchQueue.main.async {
             print("ViewModel has successfully loaded!")
             self.loadingAlert.dismiss(animated: false, completion: nil)
+            self.searchResultTableView.reloadData()
+            // Display results in the UITableView
         }
     }
     
@@ -70,6 +73,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tableCell = tableView.dequeueReusableCell(withIdentifier: "StationCell") as? SelectStationTableViewCell else { fatalError("SelectStationCell not found in Storyboard!") }
+        
         return tableCell
     }
 }
