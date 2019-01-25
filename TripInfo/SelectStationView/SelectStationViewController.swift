@@ -32,9 +32,7 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
         
         searchBar.delegate = self
         searchResultTableView.dataSource = self
-        searchResultTableView.delegate = self
-        
-        self.searchResultTableView.register(SelectStationTableViewCell.self, forCellReuseIdentifier: "StationCell")
+        searchResultTableView.delegate = self        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
