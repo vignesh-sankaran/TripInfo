@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class SelectStationTableViewCell: UITableViewCell {
-    @IBOutlet weak var stationNameLabel: UILabel!
-    @IBOutlet weak var stationLineLabel: UILabel!
+    var stopId: String? = nil
+    @IBOutlet weak var stationName: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
 }

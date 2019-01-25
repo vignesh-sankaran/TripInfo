@@ -72,7 +72,12 @@ class SearchStationViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let tableCell = tableView.dequeueReusableCell(withIdentifier: "StationCell") as? SelectStationTableViewCell else { fatalError("SelectStationCell not found in Storyboard!") }
+        let tableCell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as! SelectStationTableViewCell
+        
+        let stationCellViewModel = viewModel.stationFromIndex(index: indexPath.row)
+        
+        tableCell.stopId = stationCellViewModel.stopId
+        tableCell.stationName.text = stationCellViewModel.stationName
         
         return tableCell
     }

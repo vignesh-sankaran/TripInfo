@@ -28,9 +28,12 @@ class SelectStationViewModel {
         stations = []
     }
     
+    public func stationFromIndex(index: Int) -> SelectStationCellViewModel {
+        return stations[index]
+    }
+    
     public func populate(stationName: String) {
         // TODO: Handle edge cases with the API call
-        
         // Start service, handle population in callback
         PTVSearchTrainStationsService().searchStations(stationName: stationName, callback: completePopulate)
     }
